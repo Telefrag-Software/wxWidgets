@@ -6,33 +6,15 @@ language: cpp
 
 compiler: gcc
 
-branches:
-    only:
-        - master
-
-notifications:
-    email:
-        recipients:
-            - vadim@wxwidgets.org
-        on_success: change
-        on_failure: change
-
-before_install:
-    - sudo apt-get install -y libcppunit-dev
+sudo: false
 
 env:
     - wxCONFIGURE_FLAGS=
-    - wxCONFIGURE_FLAGS="--disable-shared"
-    - wxCONFIGURE_FLAGS="--disable-precomp-headers --enable-monolithic"
-    - wxCONFIGURE_FLAGS="--enable-stl" CXXFLAGS=-std=c++0x
+    - wxCONFIGURE_FLAGS="-DBUILD_SHARED_LIBS=ON"
+
+install:
+    - mkdir bin
+    - cd bin
 
 script:
-    - ./configure --disable-optimise $wxCONFIGURE_FLAGS
-    - make
-    - make -C tests
-    - pushd tests
-    - ./test -t
-    - popd
-    - make samples
-    - sudo make install
-    - make -C samples/minimal -f makefile.unx
+    - cmake $wxCONFIGURE_FLAGS .. && cmake --build .
