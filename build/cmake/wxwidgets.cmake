@@ -36,6 +36,10 @@ include("${WX_CMAKE_DIR}/setups/wxsetup.cmake")
 # Include port-specific setup options
 include("${WX_CMAKE_DIR}/setups/${WXBUILD_PORT}/wxsetup.cmake")
 
+# Options that were forced off through wx_force_option_off() on the first
+# run have been staged - apply them now.
+wx_apply_staged_options_off()
+
 # Generate the corresponding 'setup.h' file. Will also add the directory
 # where setup.h is located to the compiler's include path.
 wx_regen_setup_h()
@@ -43,10 +47,24 @@ wx_regen_setup_h()
 # Include the source file lists
 include("${WX_CMAKE_DIR}/files.cmake")
 
-# Prepare general options
-## BUILD_SHARED_LIBS doesn't need a WX prefix because it
-## is built into CMake and we are just exposing it
-option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+# ------------------------------------------------------
+#                    General build options
+# ------------------------------------------------------
+
+# Build shared or static libs ? 
+# note: BUILD_SHARED_LIBS is used only to initialize WXBUILD_SHARED_LIBS,
+#       the actual switch for the wxWidgets build. This way we don't rely
+#       on the shared BUILD_SHARED_LIBS flag, which might be inconsistent
+#       between subpackages (e.g. we still compile wxfoobar statically even
+#       if we're producing a shared wxWidgets build.
+if (NOT DEFINED WXBUILD_SHARED_LIBS)
+	if (DEFINED BUILD_SHARED_LIBS)
+		set(_default ${BUILD_SHARED_LIBS})
+	else ()
+		set(_default ON)
+	endif ()
+	option(WXBUILD_SHARED_LIBS "Build shared libraries" ${_default})
+endif ()
 option(WXBUILD_SAMPLES "Build the samples" OFF)
 
 # Instruct CMake to handle the FOLDER property on targets
@@ -130,9 +148,7 @@ endforeach ()
 # ------------------------------------------------------
 
 if (WXBUILD_SAMPLES)
-	# Keep the samples in the tree for the moment, as it's a huge PITA to move
-	# them into their own directories under ${WX_CMAKE_DIR}/CMakeLists
-	add_subdirectory(${WX_SOURCE_DIR}/samples)
+	add_subdirectory(${WX_CMAKE_DIR}/CMakeLists/samples)
 endif ()
 
 
