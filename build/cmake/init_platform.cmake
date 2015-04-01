@@ -29,21 +29,26 @@ endif (NOT WXBUILD_PLATFORM)
 # Platform-specific defines
 if (${WXBUILD_PLATFORM} STREQUAL "win32")
 
-	add_definitions(-DUNICODE -D_UNICODE) 
+	add_definitions(-DUNICODE -D_UNICODE)
+	list(APPEND WXBUILD_PUBLIC_DEFINITIONS UNICODE _UNICODE)
 
 elseif (${WXBUILD_PLATFORM} STREQUAL "unix")
 
 	add_definitions(-D__UNIX__)
+	list(APPEND WXBUILD_PUBLIC_DEFINITIONS __UNIX__)
 
 	if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 		add_definitions(-D__LINUX__)
+		list(APPEND WXBUILD_PUBLIC_DEFINITIONS __LINUX__)
 	elseif (${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
 		add_definitions(-D__BSD__)
+		list(APPEND WXBUILD_PUBLIC_DEFINITIONS __BSD__)
 	elseif (CYGWIN)
 		add_definitions(-D__CYGWIN__)
+		list(APPEND WXBUILD_PUBLIC_DEFINITIONS __CYGWIN__)
 	endif ()
 	find_package(X11 REQUIRED)
-	
+
 endif ()
 
 # Compiler-specific defines
@@ -51,9 +56,10 @@ endif ()
 if (CMAKE_COMPILER_IS_GNUCXX)
 
 	# GNU G++ variant
-	
-	add_definitions(-D__GUNG__)
-	
+
+	add_definitions(-D__GNUG__)
+	list(APPEND WXBUILD_PUBLIC_DEFINITIONS __GNUG__)
+
 	if (NOT (${WXBUILD_PLATFORM} STREQUAL "win32"))
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 	endif ()

@@ -1,5 +1,6 @@
 
 add_definitions(-D__WXMSW__)
+list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXMSW__)
 
 set(WXBUILD_SUBPORT)
 

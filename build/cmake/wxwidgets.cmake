@@ -3,6 +3,8 @@
 # Add our custom FindXXX() to the module include path
 list(APPEND CMAKE_MODULE_PATH "${WX_CMAKE_DIR}/CMakeModules")
 
+set(WXBUILD_PUBLIC_DEFINITIONS)
+
 # Include utilities
 include("${WX_CMAKE_DIR}/utils.cmake")
 
@@ -71,6 +73,9 @@ option(WXBUILD_SAMPLES "Build the samples" OFF)
 # (why this is needed in the first place I have no idea)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+# Use typical directory structure for installing.  This needs to come before
+# the first call to add_subdirectory
+include(GNUInstallDirs)
 
 # ------------------------------------------------------
 #                    Dependencies
@@ -142,6 +147,45 @@ foreach (_lib ${_core_libs})
 	add_subdirectory(${WX_CMAKE_DIR}/CMakeLists/${_lib})
 	set_target_properties(${_lib} PROPERTIES FOLDER "Core libraries")
 endforeach ()
+
+# ------------------------------------------------------
+#                     Install
+# ------------------------------------------------------
+
+install(FILES ${PROJECT_BINARY_DIR}/include/wx/setup.h
+	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wx)
+
+# ------------------------------------------------------
+#                   Package export
+# ------------------------------------------------------
+
+if(NOT CMAKE_VERSION VERSION_LESS "2.8.8")
+  set(CMAKE_CONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/wxWidgets")
+
+  include(CMakePackageConfigHelpers)
+
+  write_basic_package_version_file(wxWidgetsConfigVersion.cmake
+    VERSION ${WX_VERSION}
+    COMPATIBILITY SameMajorVersion)
+
+  configure_package_config_file(
+    ${WX_CMAKE_DIR}/wxWidgetsConfig.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/wxWidgetsConfig.cmake"
+    INSTALL_DESTINATION ${CMAKE_CONFIG_INSTALL_DIR}
+    PATH_VARS CMAKE_INSTALL_INCLUDEDIR)
+
+  install(
+    FILES "${CMAKE_CURRENT_BINARY_DIR}/wxWidgetsConfigVersion.cmake"
+    DESTINATION ${CMAKE_CONFIG_INSTALL_DIR})
+
+  # generate and install wxWidgetsTargets.cmake
+  install(EXPORT wxWidgetsTargets
+    NAMESPACE wxWidgets:: DESTINATION ${CMAKE_CONFIG_INSTALL_DIR})
+
+  install(
+    FILES "${CMAKE_CURRENT_BINARY_DIR}/wxWidgetsConfig.cmake"
+    DESTINATION ${CMAKE_CONFIG_INSTALL_DIR})
+endif()
 
 # ------------------------------------------------------
 #                       Samples

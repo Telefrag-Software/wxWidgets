@@ -17,6 +17,7 @@ option(WXBUILD_USE_GUI "Build GUI classes" ON)
 option(WXBUILD_UNIVERSAL "Build the wxUniversal port (instead of this platform's native port)" OFF)
 if (WXBUILD_UNIVERSAL)
 	add_definitions(-DwxUNIV=1 -D__WXUNIVERSAL__)
+	list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXUNIVERSAL__)
 endif ()
 
 # Setup the add_library lib type depending on option WXBUILD_SHARED_LIBS

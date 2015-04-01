@@ -1,5 +1,6 @@
 # Set the base flags for the Motif port
 add_definitions(-D__WXMOTIF__)
+list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXMOTIF__)
 
 # Motif port uses the configuration system
 include("${CMAKE_CURRENT_LIST_DIR}/wxconfigure.cmake")

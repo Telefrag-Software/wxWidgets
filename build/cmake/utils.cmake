@@ -279,3 +279,14 @@ macro (wx_set_source_groups)
 	source_group("MSW headers" REGULAR_EXPRESSION "/include/wx/msw/")
 	source_group("Setup headers" REGULAR_EXPRESSION "/include/wx/setup.h$")
 endmacro ()
+
+macro (wx_install_headers LIB_HEADERS)
+
+	foreach(_HEADER ${${LIB_HEADERS}})
+		file(RELATIVE_PATH _RELATIVE_HEADER "${HDR}" "${_HEADER}")
+		get_filename_component(_DIR ${_RELATIVE_HEADER} DIRECTORY)
+		install(FILES ${_HEADER}
+			DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${_DIR})
+	endforeach()
+
+endmacro ()

@@ -38,3 +38,21 @@ list(APPEND _deps ${WXBUILD_PORT_LIBRARIES})
 
 target_link_libraries(${LIB_NAME} base core ${_deps})
 
+if(NOT ${CMAKE_VERSION} VERSION_LESS 2.8.11)
+	target_include_directories(${LIB_NAME}
+		PUBLIC
+		$<BUILD_INTERFACE:${WX_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>)
+
+	if(WXBUILD_SHARED_LIBS)
+		target_compile_definitions(${LIB_NAME} PUBLIC WXUSINGDLL)
+	endif()
+
+	target_compile_definitions(${LIB_NAME}
+		PUBLIC ${WXBUILD_PUBLIC_DEFINITIONS})
+endif()
+
+install(TARGETS ${LIB_NAME} DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	EXPORT wxWidgetsTargets)
+
+wx_install_headers(LIB_HEADERS)

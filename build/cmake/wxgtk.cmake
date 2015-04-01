@@ -1,5 +1,6 @@
 # Set the base flags for the GTK port
 add_definitions(-D__WXGTK__)
+list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXGTK__)
 
 # Try to find the various versions of the GTK SDK, so as 
 # to let the user choose between the available ones.
@@ -33,18 +34,23 @@ if (WXBUILD_USE_GTK2)
 	set(WXBUILD_SUBPORT "gtk2")
 	if (GTK2_VERSION VERSION_GREATER "2.0")
 		add_definitions(-D__WXGTK20__)
+		list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXGTK20__)
 	endif ()
 	if (GTK2_VERSION VERSION_GREATER "2.4")
 		add_definitions(-D__WXGTK24__)
+		list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXGTK24__)
 	endif ()
 	if (GTK2_VERSION VERSION_GREATER "2.0")
 		add_definitions(-D__WXGTK26__)
+		list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXGTK26__)
 	endif ()
 	if (GTK2_VERSION VERSION_GREATER "2.10")
 		add_definitions(-D__WXGTK210__)
+		list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXGTK210__)
 	endif ()
 	if (GTK2_VERSION VERSION_GREATER "2.18")
 		add_definitions(-D__WXGTK218__)
+		list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXGTK218__)
 	endif ()
 	# Set appropriate include dirs and input libraries for future use
 	set(WXGTK_INCLUDE_DIRS ${GTK2_INCLUDE_DIRS})
@@ -52,6 +58,8 @@ if (WXBUILD_USE_GTK2)
 else ()
 	set(WXBUILD_SUBPORT "gtk3")
 	add_definitions(-D__WXGTK3__ -D__WXGTK20__ -D__WXGTK24__ -D__WXGTK26__ -D__WXGTK210__ -D__WXGTK218__)
+	list(APPEND WXBUILD_PUBLIC_DEFINITIONS __WXGTK3__ __WXGTK20__ __WXGTK24__ __WXGTK26__ __WXGTK210__ __WXGTK218__)
+
 	# Set appropriate include dirs and input libraries for future use
 	set(WXGTK_INCLUDE_DIRS ${GTK3_INCLUDE_DIRS})
 	set(WXGTK_LIBRARIES ${GTK3_LIBRARIES})

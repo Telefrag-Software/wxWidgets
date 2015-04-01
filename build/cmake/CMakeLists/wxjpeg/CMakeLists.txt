@@ -55,3 +55,5 @@ add_library(${LIB_NAME} STATIC
 	${LIB_SRC}
 )
 
+install(TARGETS ${LIB_NAME} DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	EXPORT wxWidgetsTargets)

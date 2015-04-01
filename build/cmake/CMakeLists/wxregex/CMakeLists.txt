@@ -13,6 +13,9 @@ add_library(${LIB_NAME} STATIC
 	${LIB_SRC}
 )
 
+install(TARGETS ${LIB_NAME} DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	EXPORT wxWidgetsTargets)
+
 if ((NOT WIN32) AND (CMAKE_SIZEOF_VOID_P EQUAL 8))
 	# 64 bit POSIX builds need -fPIC, otherwise you get the "relocation 
 	# R_X86_64_32 against `.anysymbol' can not be used when making a 
