@@ -284,7 +284,7 @@ macro (wx_install_headers LIB_HEADERS)
 
 	foreach(_HEADER ${${LIB_HEADERS}})
 		file(RELATIVE_PATH _RELATIVE_HEADER "${HDR}" "${_HEADER}")
-		get_filename_component(_DIR ${_RELATIVE_HEADER} DIRECTORY)
+		get_filename_component(_DIR ${_RELATIVE_HEADER} PATH)
 		install(FILES ${_HEADER}
 			DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${_DIR})
 	endforeach()
