@@ -4,12 +4,14 @@
 # root directory of the project.
 language: cpp
 
-compiler: gcc
+compiler:
+    - clang
+    - gcc
 
 sudo: false
 
 env:
-    - wxCONFIGURE_FLAGS=
+    - wxCONFIGURE_FLAGS=""
     - wxCONFIGURE_FLAGS="-DBUILD_SHARED_LIBS=ON"
 
 install:
