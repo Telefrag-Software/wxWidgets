@@ -53,6 +53,14 @@ endif ()
 
 # Compiler-specific defines
 
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+	# Force Clang into C++11 mode, otherwise build errors because
+	# it thinks <type_traits> is usable.  It can't tell the
+	# difference between usable and available. C++11 mode
+	# makes it usable.
+	list(APPEND CMAKE_CXX_FLAGS "-std=c++0x")
+endif()
+
 if (CMAKE_COMPILER_IS_GNUCXX)
 
 	if (NOT (${WXBUILD_PLATFORM} STREQUAL "win32"))
