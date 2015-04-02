@@ -6,19 +6,19 @@ if (NOT WXBUILD_PLATFORM)
 		if (NOT MSVC)
 			message(WARNING "No known compiler found, assuming msvc")
 		endif ()
-		
+
 		# Native Windows (or Wine?)
 		set(_plat "win32")
-		
+
 	elseif (APPLE)
-		
+
 		# OSX (Carbon, Cocoa, iThings)
 		set(_plat "osx")
-		
+
 	else ()
 		# All other POSIX (incl. Cygwin)
 		set(_plat "unix")
-		
+
 	endif ()
 
 	set(WXBUILD_PLATFORM ${_plat} CACHE STRING "Build platform (OS and compiler)")
@@ -55,11 +55,6 @@ endif ()
 
 if (CMAKE_COMPILER_IS_GNUCXX)
 
-	# GNU G++ variant
-
-	add_definitions(-D__GNUG__)
-	list(APPEND WXBUILD_PUBLIC_DEFINITIONS __GNUG__)
-
 	if (NOT (${WXBUILD_PLATFORM} STREQUAL "win32"))
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 	endif ()
@@ -72,16 +67,16 @@ elseif (MSVC)
             set_target_properties(${the_target} PROPERTIES STATIC_LIBRARY_FLAGS "/machine:x64")
             add_definitions(-D_WIN64)
         endif()
-      #TODO: add other toolsets, i.e. v110_xp  
+      #TODO: add other toolsets, i.e. v110_xp
       if( MSVC_VERSION GREATER 1600 )
         option(WX_USE_XP_TOOLSET "Set ON to use XP toolset" OFF)
         if(WX_USE_XP_TOOLSET)
-            set(CMAKE_GENERATOR_TOOLSET "v120_xp" CACHE STRING "Platform Toolset" FORCE) 
+            set(CMAKE_GENERATOR_TOOLSET "v120_xp" CACHE STRING "Platform Toolset" FORCE)
             add_definitions(-D_USING_V120_SDK71_)
         endif()
-      endif() 
+      endif()
     endif()
-	
+
 	# __VISUALC__ is actually set directly from within the header files ... sigh, I wish I had seen that before
 	# if (NOT WXBUILD_MSVC_COMPILER)
 		# set(_comp_ver)
@@ -107,7 +102,7 @@ elseif (MSVC)
 		# set(WXBUILD_MSVC_COMPILER ${_comp_ver} CACHE STRING "Microsoft Visual C++ compiler version")
 		# mark_as_advanced(WXBUILD_MSVC_COMPILER)
 	# endif ()
-	
+
 	# add_definitions(-D__VISUALC__=${WXBUILD_MSVC_COMPILER})
-	
+
 endif ()
