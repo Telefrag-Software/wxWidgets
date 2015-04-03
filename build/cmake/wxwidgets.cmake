@@ -3,7 +3,41 @@
 # Add our custom FindXXX() to the module include path
 list(APPEND CMAKE_MODULE_PATH "${WX_CMAKE_DIR}/CMakeModules")
 
+# ------------------------------------------------------
+#                    General build options
+# ------------------------------------------------------
+
+# Build shared or static libs ?
+# This must come before init_common which uses value to calculate
+# WXBUILD_SHARED_OR_STATIC
+# note: BUILD_SHARED_LIBS is used only to initialize WXBUILD_SHARED_LIBS,
+#       the actual switch for the wxWidgets build. This way we don't rely
+#       on the shared BUILD_SHARED_LIBS flag, which might be inconsistent
+#       between subpackages (e.g. we still compile wxfoobar statically even
+#       if we're producing a shared wxWidgets build.
+if (NOT DEFINED WXBUILD_SHARED_LIBS)
+	if (DEFINED BUILD_SHARED_LIBS)
+		set(_default ${BUILD_SHARED_LIBS})
+	else ()
+		set(_default ON)
+	endif ()
+	option(WXBUILD_SHARED_LIBS "Build shared libraries" ${_default})
+endif ()
+option(WXBUILD_SAMPLES "Build the samples" OFF)
+
+# Instruct CMake to handle the FOLDER property on targets
+# (why this is needed in the first place I have no idea)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+# Use typical directory structure for installing.  This needs to come before
+# the first call to add_subdirectory
+include(GNUInstallDirs)
+
 set(WXBUILD_PUBLIC_DEFINITIONS)
+
+# ------------------------------------------------------
+#                    wxWidgets setup
+# ------------------------------------------------------
 
 # Include utilities
 include("${WX_CMAKE_DIR}/utils.cmake")
@@ -48,34 +82,6 @@ wx_regen_setup_h()
 
 # Include the source file lists
 include("${WX_CMAKE_DIR}/files.cmake")
-
-# ------------------------------------------------------
-#                    General build options
-# ------------------------------------------------------
-
-# Build shared or static libs ? 
-# note: BUILD_SHARED_LIBS is used only to initialize WXBUILD_SHARED_LIBS,
-#       the actual switch for the wxWidgets build. This way we don't rely
-#       on the shared BUILD_SHARED_LIBS flag, which might be inconsistent
-#       between subpackages (e.g. we still compile wxfoobar statically even
-#       if we're producing a shared wxWidgets build.
-if (NOT DEFINED WXBUILD_SHARED_LIBS)
-	if (DEFINED BUILD_SHARED_LIBS)
-		set(_default ${BUILD_SHARED_LIBS})
-	else ()
-		set(_default ON)
-	endif ()
-	option(WXBUILD_SHARED_LIBS "Build shared libraries" ${_default})
-endif ()
-option(WXBUILD_SAMPLES "Build the samples" OFF)
-
-# Instruct CMake to handle the FOLDER property on targets
-# (why this is needed in the first place I have no idea)
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-# Use typical directory structure for installing.  This needs to come before
-# the first call to add_subdirectory
-include(GNUInstallDirs)
 
 # ------------------------------------------------------
 #                    Dependencies
