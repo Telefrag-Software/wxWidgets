@@ -69,7 +69,7 @@ if(NOT ${CMAKE_VERSION} VERSION_LESS 2.8.11)
 		$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>)
 
 	if(WXBUILD_SHARED_LIBS)
-		target_compile_definitions(${LIB_NAME} PUBLIC WXUSINGDLL)
+		target_compile_definitions(${LIB_NAME} INTERFACE WXUSINGDLL)
 	endif()
 
 	target_compile_definitions(${LIB_NAME}
