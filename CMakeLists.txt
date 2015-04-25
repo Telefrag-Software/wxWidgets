@@ -8,6 +8,13 @@ cmake_minimum_required(VERSION 2.8)
 # ambiguity: do we want the old or new behaviour ? A: we want the new one.
 set(CMAKE_LEGACY_CYGWIN_WIN32 0) 
 
+include(${CMAKE_CURRENT_LIST_DIR}/build/cmake/CMakeModules/HunterGate.cmake)
+
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.9.3.tar.gz"
+    SHA1 "a0fcbcf3293f9303406271310f379f403002112d"
+)
+
 # This declares the project (solution in terms of MSVC) we're working on,
 # and incidentally, informs CMake that the directory we're in is the top-level
 # source directory. This will set PROJECT_SOURCE_DIR properly.

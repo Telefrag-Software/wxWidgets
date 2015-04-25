@@ -32,6 +32,7 @@ endif ()
 # (always prefer system libs over wxWidget's). Probe the system
 # lib on first run (WXBUILD_SYSTEM_ZLIB not defined) and
 # require the lib if it's defined and ON.
+hunter_add_package(ZLIB)
 if (WXBUILD_SYSTEM_ZLIB)
 	find_package(ZLIB REQUIRED)
 else ()
@@ -39,6 +40,7 @@ else ()
 endif ()
 option(WXBUILD_SYSTEM_ZLIB "Use system zlib" ${ZLIB_FOUND})
 
+hunter_add_package(PNG)
 if (WXBUILD_SYSTEM_PNG)
 	find_package(PNG REQUIRED)
 else ()
@@ -53,6 +55,7 @@ else ()
 endif ()
 option(WXBUILD_SYSTEM_JPEG "Use system JPEG" ${JPEG_FOUND})
 
+hunter_add_package(TIFF)
 if (WXBUILD_SYSTEM_TIFF)
 	find_package(TIFF REQUIRED)
 else ()
@@ -60,6 +63,7 @@ else ()
 endif ()
 option(WXBUILD_SYSTEM_TIFF "Use system TIFF" ${TIFF_FOUND})
 
+hunter_add_package(Expat)
 if (WXBUILD_SYSTEM_EXPAT)
 	find_package(EXPAT REQUIRED)
 else ()
