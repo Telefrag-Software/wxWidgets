@@ -1,12 +1,14 @@
 set(LIB_NAME gl)
 
+find_package(OpenGL COMPONENTS GLU REQUIRED)
+
 add_definitions(-DwxUSE_BASE=0)
 
 if(WXBUILD_SHARED_LIBS)
   add_definitions(-DWXMAKINGDLL_GL -DWXUSINGDLL)
 endif()
 
-include_directories(${WXBUILD_PORT_INCLUDE_DIRS})
+include_directories(${WXBUILD_PORT_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR})
 
 set(LIB_SRC
 	${WXFILES_OPENGL_SRC}
@@ -26,17 +28,7 @@ add_library(${LIB_NAME} ${WXBUILD_SHARED_OR_STATIC}
 	${PROJECT_BINARY_DIR}/include/wx/setup.h
 )
 
-set(_deps)
-
-if (${WXBUILD_PORT} STREQUAL "msw")
-	list(APPEND _deps opengl32 glu32)
-else ()
-	list(APPEND _deps GL GLU)
-endif ()
-
-list(APPEND _deps ${WXBUILD_PORT_LIBRARIES})
-
-target_link_libraries(${LIB_NAME} core ${_deps})
+target_link_libraries(${LIB_NAME} core ${OPENGL_LIBRARIES} ${WXBUILD_PORT_LIBRARIES})
 
 if(NOT ${CMAKE_VERSION} VERSION_LESS 2.8.11)
 	target_include_directories(${LIB_NAME}
