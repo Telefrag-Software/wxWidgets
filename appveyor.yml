@@ -20,9 +20,12 @@ platform:
 #   - Debug
 #   - Release
 
+install:
+  - cinst -y cmake -version 3.2.1
+
 build_script:
   - ps: if($env:PLATFORM -eq "x64") { $env:CMAKE_GEN_SUFFIX=" Win64" }
-  - cmake "-G%GENERATOR%%CMAKE_GEN_SUFFIX%" -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS% -DWX_USE_EXT_EXPAT=OFF -DWX_USE_EXT_JPEG=OFF -DWX_USE_EXT_PNG=OFF -DWX_USE_EXT_PNG=OFF -DWX_USE_EXT_TIFF=OFF -DWX_USE_EXT_ZIP=OFF -H. -B_builds
+  - cmake "-G%GENERATOR%%CMAKE_GEN_SUFFIX%" -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS% -H. -B_builds
   - cmake --build _builds --config "%CONFIGURATION%"
 
 on_failure:
