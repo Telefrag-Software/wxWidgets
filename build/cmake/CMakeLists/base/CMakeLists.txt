@@ -62,6 +62,14 @@ endif ()
 
 target_link_libraries(${LIB_NAME} ${_deps})
 
+if (CMAKE_COMPILER_IS_GNUCXX)
+	if (NOT (${WXBUILD_PLATFORM} STREQUAL "win32"))
+		set_property(TARGET ${LIB_NAME} PROPERTY COMPILE_OPTIONS "-pthread")
+		set_property(TARGET ${LIB_NAME} PROPERTY INTERFACE_COMPILE_OPTIONS "-pthread")
+		target_link_libraries(${LIB_NAME} pthread)
+	endif()
+endif()
+
 if(NOT ${CMAKE_VERSION} VERSION_LESS 2.8.11)
 	target_include_directories(${LIB_NAME}
 		PUBLIC

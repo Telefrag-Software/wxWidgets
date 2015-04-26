@@ -61,13 +61,8 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 	list(APPEND CMAKE_CXX_FLAGS "-std=c++0x")
 endif()
 
-if (CMAKE_COMPILER_IS_GNUCXX)
 
-	if (NOT (${WXBUILD_PLATFORM} STREQUAL "win32"))
-		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-	endif ()
-
-elseif (MSVC)
+if (MSVC)
 
 	# Microsoft Visual C++
     if(MSVC OR MSVC_IDE)
