@@ -45,29 +45,24 @@ add_library(${LIB_NAME} ${WXBUILD_SHARED_OR_STATIC}
 	${PROJECT_BINARY_DIR}/include/wx/setup.h
 )
 
-set(_deps)
 if (NOT WXBUILD_SYSTEM_ZLIB)
-	list(APPEND _deps wxzlib)
-else ()
-	list(APPEND _deps ${ZLIB_LIBRARIES})
-endif ()
+	target_link_libraries(${LIB_NAME} wxzlib)
+else()
+	target_link_libraries(${LIB_NAME} ${ZLIB_LIBRARIES})
+endif()
 
 if (WXSETUP_wxUSE_REGEX)
-	list(APPEND _deps wxregex)
+	target_link_libraries(${LIB_NAME} wxregex)
 endif()
 
 if (${WXBUILD_PLATFORM} STREQUAL "win32")
 	target_link_libraries(${LIB_NAME} ws2_32)
 endif ()
 
-target_link_libraries(${LIB_NAME} ${_deps})
-
-if (CMAKE_COMPILER_IS_GNUCXX)
-	if (NOT (${WXBUILD_PLATFORM} STREQUAL "win32"))
-		set_property(TARGET ${LIB_NAME} PROPERTY COMPILE_OPTIONS "-pthread")
-		set_property(TARGET ${LIB_NAME} PROPERTY INTERFACE_COMPILE_OPTIONS "-pthread")
-		target_link_libraries(${LIB_NAME} pthread)
-	endif()
+if (${WXBUILD_PLATFORM} STREQUAL "unix")
+	set_property(TARGET ${LIB_NAME} PROPERTY COMPILE_OPTIONS "-pthread")
+	set_property(TARGET ${LIB_NAME} PROPERTY INTERFACE_COMPILE_OPTIONS "-pthread")
+	target_link_libraries(${LIB_NAME} pthread)
 endif()
 
 if (${WXBUILD_PLATFORM} STREQUAL "unix")
