@@ -70,6 +70,10 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 	endif()
 endif()
 
+if (${WXBUILD_PLATFORM} STREQUAL "unix")
+	target_link_libraries(${LIB_NAME} ${CMAKE_DL_LIBS})
+endif()
+
 if(NOT ${CMAKE_VERSION} VERSION_LESS 2.8.11)
 	target_include_directories(${LIB_NAME}
 		PUBLIC
