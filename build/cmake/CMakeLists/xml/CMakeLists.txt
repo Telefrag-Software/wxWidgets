@@ -35,6 +35,10 @@ list(APPEND _deps ${WXBUILD_PORT_LIBRARIES})
 if (NOT WXBUILD_SYSTEM_EXPAT)
 	list(APPEND _deps expat)
 else ()
+	# TODO: Remove once Hunter's Expat has a package config file.
+	# That file should export this definition only if Expat is compiled
+	# statically.  For now, we are just assuming that it is.
+	target_compile_definitions(${LIB_NAME} PRIVATE XML_STATIC)
 	list(APPEND _deps ${EXPAT_LIBRARIES})
 endif ()
 
