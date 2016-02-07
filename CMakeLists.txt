@@ -11,8 +11,8 @@ set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 include(${CMAKE_CURRENT_LIST_DIR}/build/cmake/CMakeModules/HunterGate.cmake)
 
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.9.4.tar.gz"
-    SHA1 "aee3a78640b30a7e722a4caa2c98e96d4f2e686d"
+    URL "https://github.com/ruslo/hunter/archive/v0.12.42.tar.gz"
+    SHA1 "d1271307bbffe46fbbeeb3778236b2d51644e34d"
 )
 
 # This declares the project (solution in terms of MSVC) we're working on,
