@@ -48,6 +48,7 @@ else ()
 endif ()
 option(WXBUILD_SYSTEM_PNG "Use system PNG" ${PNG_FOUND})
 
+hunter_add_package(Jpeg)
 if (WXBUILD_SYSTEM_JPEG)
 	find_package(JPEG REQUIRED)
 else ()

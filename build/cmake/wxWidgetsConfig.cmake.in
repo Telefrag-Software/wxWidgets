@@ -21,6 +21,10 @@ if(@WXBUILD_SYSTEM_PNG@)
   find_package(PNG CONFIG)
 endif()
 
+if(@WXBUILD_SYSTEM_JPEG@)
+  find_package(JPEG CONFIG)
+endif()
+
 if(@WXBUILD_SYSTEM_TIFF@)
   find_package(TIFF CONFIG)
 endif()
