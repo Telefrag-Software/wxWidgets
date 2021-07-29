@@ -25,9 +25,9 @@ hunter_config(PNG
 )
 
 hunter_config(TIFF
-	URL "https://github.com/Telefrag-Software/libtiff/archive/refs/heads/hunter-wx-0350ad5e.zip"
-	VERSION "0350ad5e"
-	SHA1 "e0905f4e4c6c8d941b4f3b84ed69e85b288d93cf"
+	URL "https://github.com/Telefrag-Software/libtiff/archive/refs/heads/hunter-wx-96d28814.zip"
+	VERSION "96d28814"
+	SHA1 "8c19a5128d8b5b6c789782be3ea692cb978cb3ad"
 	CMAKE_ARGS
 		BUILD_SHARED_LIBS=OFF
 )
