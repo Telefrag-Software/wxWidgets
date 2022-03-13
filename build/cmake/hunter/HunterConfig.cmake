@@ -19,9 +19,9 @@ hunter_config(JPEG
 )
 
 hunter_config(PNG
-	URL "https://github.com/Telefrag-Software/libpng/archive/refs/heads/hunter-wx-6b051ac58.zip"
-	VERSION "6b051ac58"
-	SHA1 "0767a6004bb6a5b1f1b40530a4d0ee868d24dbc2"
+	URL "https://github.com/Telefrag-Software/libpng/archive/refs/heads/hunter-wx-0dd3a7d0b.zip"
+	VERSION "0dd3a7d0b"
+	SHA1 "356457aff077cefc00a75f6c78a2c1b32ef3e6c3"
 )
 
 hunter_config(TIFF
@@ -30,10 +30,12 @@ hunter_config(TIFF
 	SHA1 "8c19a5128d8b5b6c789782be3ea692cb978cb3ad"
 	CMAKE_ARGS
 		BUILD_SHARED_LIBS=OFF
+		lzma=OFF
+		zstd=OFF
 )
 
 hunter_config(WXZLIB
-	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-wx-44d6aaf.zip"
-	VERSION "44d6aaf"
-	SHA1 "575ce9a464c4711cdbdd5d557e2a15e93f2b76be"
+	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-wx-aaeee82.zip"
+	VERSION "aaeee82"
+	SHA1 "80f0511cd99c07ab27d4092b3a854ae95cc1d57f"
 )
