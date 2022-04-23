@@ -275,6 +275,10 @@ function(wx_set_target_properties target_name)
         target_compile_definitions(${target_name} PRIVATE wxUSE_GUI=1 wxUSE_BASE=0)
     endif()
 
+    if(HUNTER_ENABLED)
+        target_compile_definitions(${target_name} PRIVATE wxUSE_HUNTER)
+    endif()
+
     if(wxUSE_UNICODE)
         if(WIN32)
             target_compile_definitions(${target_name} PUBLIC UNICODE)
@@ -595,7 +599,7 @@ function(wx_add_thirdparty_library var_name lib_name help_str)
     endif()
 
     wx_option(${var_name} ${help_str} ${thirdparty_lib_default}
-        STRINGS builtin sys OFF)
+        STRINGS builtin hunter sys OFF)
 
     if(${var_name} STREQUAL "sys")
         # If the sys library can not be found use builtin

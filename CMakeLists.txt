@@ -9,6 +9,21 @@
 
 cmake_minimum_required(VERSION 3.0)
 
+# Toggles the use of the Hunter package manager
+option(HUNTER_ENABLED "Enables Hunter package manager support." ON)
+
+include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/hunter/HunterInit.cmake)
+
+if(HUNTER_ENABLED)
+    set(wxUSE_EXPAT "hunter")
+    set(wxUSE_LIBJPEG "hunter")
+    set(wxUSE_LIBPNG "hunter")
+    set(wxUSE_LIBTIFF OFF)
+    set(wxUSE_ZLIB "hunter")
+    set(wxUSE_REGEX "hunter")
+    set(wxUSE_SVG "hunter")
+endif()
+
 if(NOT CMAKE_CONFIGURATION_TYPES)
     get_property(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
     # Set default configuration types for multi-config generators

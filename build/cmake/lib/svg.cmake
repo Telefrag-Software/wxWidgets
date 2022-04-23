@@ -1,0 +1,6 @@
+if(wxUSE_SVG STREQUAL "hunter" AND HUNTER_ENABLED)
+    hunter_add_package(nanosvg)
+    find_package(nanosvg CONFIG REQUIRED)
+    set(SVG_LIBRARIES nanosvg::nanosvg)
+    set(SVG_INCLUDE_DIRS "${NANOSVG_ROOT}/include")
+endif()

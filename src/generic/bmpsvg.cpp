@@ -19,6 +19,7 @@
 // for compilers that support precompilation, includes "wx.h".
 #include "wx/wxprec.h"
 
+#ifndef wxUSE_HUNTER
 #ifdef wxHAS_SVG
 
 // Try to help people updating their sources from Git and forgetting to
@@ -33,6 +34,7 @@
 #endif // __has_include
 
 #endif // wxHAS_SVG
+#endif // wxUSE_HUNTER
 
 #ifdef wxHAS_SVG
 
@@ -60,8 +62,13 @@
 #define NANOSVG_IMPLEMENTATION
 #define NANOSVGRAST_IMPLEMENTATION
 #define NANOSVG_ALL_COLOR_KEYWORDS
-#include "../../3rdparty/nanosvg/src/nanosvg.h"
-#include "../../3rdparty/nanosvg/src/nanosvgrast.h"
+#ifdef wxUSE_HUNTER
+    #include <nanosvg/nanosvg.h>
+    #include <nanosvg/nanosvgrast.h>
+#else
+    #include "../../3rdparty/nanosvg/src/nanosvg.h"
+    #include "../../3rdparty/nanosvg/src/nanosvgrast.h"
+#endif // wxUSE_HUNTER
 
 #ifdef __VISUALC__
     #pragma warning(pop)

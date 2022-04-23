@@ -20,6 +20,9 @@ endif()
 
 # Define third party libraries
 set(LIBS_THIRDPARTY regex zlib expat)
+if(HUNTER_ENABLED)
+    list(APPEND LIBS_THIRDPARTY svg)
+endif()
 if(wxUSE_GUI)
     list(APPEND LIBS_THIRDPARTY jpeg png tiff)
 endif()
