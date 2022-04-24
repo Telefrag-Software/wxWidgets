@@ -38,6 +38,12 @@ hunter_config(JPEG
 	SHA1 "b135f44ecafa08c91cd60ac5433e6d4fa5dfc990"
 )
 
+hunter_config(nanosvg
+	URL "https://github.com/Telefrag-Software/nanosvg/archive/refs/heads/hunter-wx-26db6fe.zip"
+	VERSION "26db6fe"
+	SHA1 "7e882edb4ffa7800c7944e91c8ef00c628d70e89"
+)
+
 hunter_config(PCRE2
 	URL "https://github.com/Telefrag-Software/pcre/archive/refs/heads/hunter-wx-5b934c2.zip"
 	VERSION "5b934c2"

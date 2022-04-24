@@ -275,6 +275,10 @@ function(wx_set_target_properties target_name)
         target_compile_definitions(${target_name} PRIVATE wxUSE_GUI=1 wxUSE_BASE=0)
     endif()
 
+    if(HUNTER_ENABLED)
+        target_compile_definitions(${target_name} PRIVATE wxUSE_HUNTER)
+    endif()
+
     if(wxUSE_UNICODE)
         if(WIN32)
             target_compile_definitions(${target_name} PUBLIC UNICODE)

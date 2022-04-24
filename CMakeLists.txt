@@ -21,6 +21,7 @@ if(HUNTER_ENABLED)
     set(wxUSE_LIBTIFF OFF)
     set(wxUSE_ZLIB "hunter")
     set(wxUSE_REGEX "hunter")
+    set(wxUSE_SVG "hunter")
 endif()
 
 if(NOT CMAKE_CONFIGURATION_TYPES)
