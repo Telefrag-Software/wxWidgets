@@ -18,7 +18,7 @@ if(HUNTER_ENABLED)
     set(wxUSE_EXPAT "hunter")
     set(wxUSE_LIBJPEG "hunter")
     set(wxUSE_LIBPNG "hunter")
-    set(wxUSE_LIBTIFF "hunter")
+    set(wxUSE_LIBTIFF OFF)
     set(wxUSE_ZLIB "hunter")
 endif()
 
