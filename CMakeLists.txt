@@ -20,6 +20,7 @@ if(HUNTER_ENABLED)
     set(wxUSE_LIBPNG "hunter")
     set(wxUSE_LIBTIFF OFF)
     set(wxUSE_ZLIB "hunter")
+    set(wxUSE_REGEX "hunter")
 endif()
 
 if(NOT CMAKE_CONFIGURATION_TYPES)
