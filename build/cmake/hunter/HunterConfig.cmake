@@ -70,7 +70,7 @@ hunter_config(png
 #)
 
 hunter_config(WXZLIB
-	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-wx-d0982b8.zip"
-	VERSION "d0982b8"
-	SHA1 "cee2cfba4f562f38ea8e08852f41076cd4b1150f"
+	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-wx-49c0ec0.zip"
+	VERSION "49c0ec0"
+	SHA1 "3533174ecc2984eebe30e9f2543c42a24d83d35e"
 )
