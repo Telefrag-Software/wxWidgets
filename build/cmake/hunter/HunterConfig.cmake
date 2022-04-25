@@ -13,13 +13,6 @@ include_guard()
 #	SHA1 "724c091ed2c6ae6e5219111a75d021c42d41b892"
 #)
 
-# LibTIFF / LibPNG Dependencies
-hunter_config(ZLIB
-	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-1.2.11.1.zip"
-	VERSION "1.2.11.1"
-	SHA1 "974d834f2e00dc647703c25f14617379986abd02"
-)
-
 # wxWidgets Dependencies
 hunter_config(CatchSelfTest
 	URL "https://github.com/Telefrag-Software/Catch2/archive/refs/heads/hunter-wx-5f5e4cec.zip"
@@ -52,9 +45,9 @@ hunter_config(PCRE2
 )
 
 hunter_config(png
-	URL "https://github.com/Telefrag-Software/libpng/archive/refs/heads/hunter-wx-9f5815a21.zip"
-	VERSION "9f5815a21"
-	SHA1 "6da0706ad0f7c405ee6ebf4b4152053d0ba2adb8"
+	URL "https://github.com/Telefrag-Software/libpng/archive/refs/heads/hunter-wx-f519b3c93.zip"
+	VERSION "f519b3c93"
+	SHA1 "c7f20abdc2b098033836296b7a957502e8406f64"
 	CMAKE_ARGS
 		BUILD_SHARED_LIBS=OFF
 )
@@ -69,8 +62,8 @@ hunter_config(png
 #		zstd=OFF
 #)
 
-hunter_config(WXZLIB
-	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-wx-49c0ec0.zip"
-	VERSION "49c0ec0"
-	SHA1 "3533174ecc2984eebe30e9f2543c42a24d83d35e"
+hunter_config(ZLIB
+	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-1.2.12.1.zip"
+	VERSION "1.2.12.1"
+	SHA1 "13fe010169c4cfd3a55e98f6334a322149c5dca4"
 )
