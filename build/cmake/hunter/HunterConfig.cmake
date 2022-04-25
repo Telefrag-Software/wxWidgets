@@ -45,9 +45,9 @@ hunter_config(PCRE2
 )
 
 hunter_config(png
-	URL "https://github.com/Telefrag-Software/libpng/archive/refs/heads/hunter-wx-f519b3c93.zip"
-	VERSION "f519b3c93"
-	SHA1 "c7f20abdc2b098033836296b7a957502e8406f64"
+	URL "https://github.com/Telefrag-Software/libpng/archive/refs/heads/hunter-wx-099e55499.zip"
+	VERSION "099e55499"
+	SHA1 "35ff4e804dde7ded8984a162ead3876f7da888c5"
 	CMAKE_ARGS
 		BUILD_SHARED_LIBS=OFF
 )
