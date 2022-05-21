@@ -83,3 +83,5 @@ message(STATUS "Configured wxWidgets ${wxVERSION} for ${CMAKE_SYSTEM}
     Should wxWidgets support Unicode?                  ${wxUSE_UNICODE}
     What wxWidgets compatibility level should be used? ${wxBUILD_COMPATIBILITY}"
     )
+
+include(build/cmake/export.cmake)          # Export target support
