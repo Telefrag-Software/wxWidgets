@@ -22,59 +22,23 @@ configure_package_config_file(
 if(WIN32_MSVC_NAMING)
     wx_install(
         DIRECTORY "${wxSOURCE_DIR}/include/wx"
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}")
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
     if(MSVC)
         wx_install(
             DIRECTORY "${wxSOURCE_DIR}/include/msvc"
-            DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}")
+            DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
     endif()
 else()
     wx_get_flavour(lib_flavour "-")
     wx_install(
         DIRECTORY "${wxSOURCE_DIR}/include/wx"
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/wx-${wxMAJOR_VERSION}.${wxMINOR_VERSION}${lib_flavour}")
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/wx-${wxMAJOR_VERSION}.${wxMINOR_VERSION}${lib_flavour}")
 endif()
 
-# setup header and wx-config
-if(WIN32_MSVC_NAMING)
-    wx_install(
-        DIRECTORY "${wxSETUP_HEADER_PATH}"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${wxPLATFORM_LIB_DIR}")
-else()
-    wx_install(
-        DIRECTORY "${wxSETUP_HEADER_PATH}"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/wx/include")
-
-    wx_install(
-        FILES "${wxOUTPUT_DIR}/wx/config/${wxBUILD_FILE_ID}"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/wx/config"
-        PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
-                    GROUP_EXECUTE GROUP_READ
-                    WORLD_EXECUTE WORLD_READ
-        )
-
-#    install(DIRECTORY DESTINATION "bin")
-#    install(CODE "execute_process( \
-#        COMMAND ${CMAKE_COMMAND} -E create_symlink \
-#        ${CMAKE_INSTALL_PREFIX}/lib/wx/config/${wxBUILD_FILE_ID} \
-#        ${CMAKE_INSTALL_PREFIX}/bin/wx-config \
-#        )"
-#    )
-endif()
-
-#install(
-#    TARGETS ${PROJECT_NAME}
-#    EXPORT "${TARGETS_EXPORT_NAME}"
-#    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-#    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-#    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
-#    INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
-#)
-
-#install(
-#    FILES ${wxMONO_SRC_FILES}
-#    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}"
-#)
+# setup header
+wx_install(
+    DIRECTORY "${wxSETUP_HEADER_PATH}"
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 
 install(
     FILES "${PROJECT_CONFIG}" "${VERSION_CONFIG}"
