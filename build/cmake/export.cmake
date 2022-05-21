@@ -35,6 +35,33 @@ else()
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/wx-${wxMAJOR_VERSION}.${wxMINOR_VERSION}${lib_flavour}")
 endif()
 
+# setup header and wx-config
+if(WIN32_MSVC_NAMING)
+    wx_install(
+        DIRECTORY "${wxSETUP_HEADER_PATH}"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${wxPLATFORM_LIB_DIR}")
+else()
+    wx_install(
+        DIRECTORY "${wxSETUP_HEADER_PATH}"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/wx/include")
+
+    wx_install(
+        FILES "${wxOUTPUT_DIR}/wx/config/${wxBUILD_FILE_ID}"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/wx/config"
+        PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
+                    GROUP_EXECUTE GROUP_READ
+                    WORLD_EXECUTE WORLD_READ
+        )
+
+#    install(DIRECTORY DESTINATION "bin")
+#    install(CODE "execute_process( \
+#        COMMAND ${CMAKE_COMMAND} -E create_symlink \
+#        ${CMAKE_INSTALL_PREFIX}/lib/wx/config/${wxBUILD_FILE_ID} \
+#        ${CMAKE_INSTALL_PREFIX}/bin/wx-config \
+#        )"
+#    )
+endif()
+
 #install(
 #    TARGETS ${PROJECT_NAME}
 #    EXPORT "${TARGETS_EXPORT_NAME}"
