@@ -9,6 +9,11 @@
 
 if(wxUSE_NANOSVG STREQUAL "builtin")
     set(wxUSE_NANOSVG_EXTERNAL 0 PARENT_SCOPE)
+elseif(wxUSE_NANOSVG STREQUAL "hunter")
+    hunter_add_package(nanosvg)
+    find_package(nanosvg CONFIG REQUIRED)
+    set(NANOSVG_LIBRARIES nanosvg::nanosvg)
+    set(NANOSVG_INCLUDE_DIRS "${NANOSVG_ROOT}/include")
 elseif(wxUSE_NANOSVG)
     set(wxUSE_NANOSVG_EXTERNAL 1 PARENT_SCOPE)
 
