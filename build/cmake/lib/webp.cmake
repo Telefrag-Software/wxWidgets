@@ -58,7 +58,16 @@ if(wxUSE_LIBWEBP STREQUAL "builtin")
             ARCHIVE DESTINATION "lib${GEN_EXPR_DIR}${wxPLATFORM_LIB_DIR}"
         )
     endif()
-
+elseif(wxUSE_LIBWEBP STREQUAL "hunter" AND HUNTER_ENABLED)
+    hunter_add_package(WebP)
+    find_package(WebP CONFIG REQUIRED)
+    set(WebP_LIBRARIES
+        WebP::webp
+        WebP::webpdemux
+        WebP::sharpyuv
+    )
+    set(WEBP_INCLUDE_DIR "${WEBP_ROOT}/include")
+    set_property(TARGET ${WebP_LIBRARIES} PROPERTY IMPORTED_GLOBAL TRUE)
 elseif(wxUSE_LIBWEBP)
     find_package(WebP REQUIRED)
 endif()

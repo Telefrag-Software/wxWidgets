@@ -9,6 +9,12 @@
 
 cmake_minimum_required(VERSION 3.5...3.31)
 
+cmake_policy(SET CMP0074 NEW)
+
+option(HUNTER_ENABLED "Enables Hunter package manager support." ON)
+
+include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/hunter/HunterInit.cmake)
+
 if(NOT CMAKE_CONFIGURATION_TYPES)
     get_property(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
     # Set default configuration types for multi-config generators
