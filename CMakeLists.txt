@@ -9,6 +9,28 @@
 
 cmake_minimum_required(VERSION 3.0)
 
+if(NOT CMAKE_VERSION VERSION_LESS 3.12)
+  # For CMake >= 3.12, find_package(<PackageName>) searches prefixes given by
+  # <PackageName>_ROOT CMake variable and <PackageName>_ROOT
+  # environment variable.
+  cmake_policy(SET CMP0074 NEW)
+endif()
+
+option(HUNTER_ENABLED "Enables Hunter package manager support." ON)
+
+include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/hunter/HunterInit.cmake)
+
+if(HUNTER_ENABLED)
+    set(wxUSE_EXPAT "hunter")
+    set(wxUSE_LIBJPEG "hunter")
+    set(wxUSE_LIBLZMA "hunter")
+    set(wxUSE_LIBPNG "hunter")
+    set(wxUSE_LIBTIFF OFF)
+    set(wxUSE_ZLIB "hunter")
+    set(wxUSE_REGEX "hunter")
+    set(wxUSE_NANOSVG "hunter")
+endif()
+
 if(NOT CMAKE_CONFIGURATION_TYPES)
     get_property(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
     # Set default configuration types for multi-config generators

@@ -22,6 +22,12 @@ if(MSVC)
 endif()
 
 # setup header and wx-config
+if(HUNTER_ENABLED)
+    install(
+        FILES "${wxSETUP_HEADER_FILE}"
+        DESTINATION "include/wx")
+endif()
+
 if(WIN32_MSVC_NAMING)
     install(
         DIRECTORY "${wxSETUP_HEADER_PATH}"
