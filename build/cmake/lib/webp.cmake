@@ -71,4 +71,14 @@ if(wxUSE_LIBWEBP STREQUAL "builtin")
         endif()
         wx_add_builtin_library(${target_name} ${builtin_props} FOLDER "/WebP")
     endforeach()
+elseif(wxUSE_LIBWEBP STREQUAL "hunter" AND HUNTER_ENABLED)
+    hunter_add_package(WebP)
+    find_package(WebP CONFIG REQUIRED)
+    set(WebP_LIBRARIES
+        WebP::webp
+        WebP::webpdemux
+        WebP::sharpyuv
+    )
+    set(WEBP_INCLUDE_DIR "${WEBP_ROOT}/include")
+    set_property(TARGET ${WebP_LIBRARIES} PROPERTY IMPORTED_GLOBAL TRUE)
 endif()

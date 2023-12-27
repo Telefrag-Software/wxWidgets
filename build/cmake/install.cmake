@@ -39,6 +39,12 @@ endif()
 wx_get_install_platform_dir(library)
 
 # setup header and wx-config
+if(HUNTER_ENABLED)
+    install(
+        FILES "${wxSETUP_HEADER_FILE}"
+        DESTINATION "include/wx")
+endif()
+
 if(WIN32_MSVC_NAMING)
     # create both Debug and Release directories, so CMake doesn't complain about
     # non-existent path when only Release or Debug build has been installed

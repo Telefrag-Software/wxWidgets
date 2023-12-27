@@ -428,6 +428,10 @@ function(wx_set_target_properties target_name)
         target_compile_definitions(${target_name} PUBLIC wxUSE_GUI=1 PRIVATE wxUSE_BASE=0)
     endif()
 
+    if(HUNTER_ENABLED)
+        target_compile_definitions(${target_name} PRIVATE wxUSE_HUNTER)
+    endif()
+
     if(MSVC)
         # Suppress deprecation warnings for standard library calls
         target_compile_definitions(${target_name} PRIVATE
@@ -835,7 +839,7 @@ function(wx_add_thirdparty_library var_name lib_name help_str)
     endif()
 
     wx_option(${var_name} ${help_str} ${thirdparty_lib_default}
-        STRINGS builtin sys OFF)
+        STRINGS builtin hunter sys OFF)
 
     set(wxTHIRD_PARTY_LIBRARIES ${wxTHIRD_PARTY_LIBRARIES} ${var_name} "${help_str}" PARENT_SCOPE)
 endfunction()

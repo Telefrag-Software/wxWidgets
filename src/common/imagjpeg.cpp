@@ -34,8 +34,13 @@
     #define boolean wxHACK_BOOLEAN
 #endif
 
+#if defined(wxUSE_HUNTER)
+#include <jpeg/jpeglib.h>
+#include <jpeg/jerror.h>
+#else
 #include "jpeglib.h"
 #include "jerror.h"
+#endif // wxUSE_HUNTER
 
 #include "wx/filefn.h"
 #include "wx/wfstream.h"

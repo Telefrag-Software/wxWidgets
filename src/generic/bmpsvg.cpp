@@ -234,6 +234,8 @@ private:
 // nanosvg implementation
 // ============================================================================
 
+#if !defined(wxUSE_HUNTER)
+
 #if !wxUSE_NANOSVG_EXTERNAL
 
 // Try to help people updating their sources from Git and forgetting to
@@ -248,6 +250,8 @@ private:
 #endif // __has_include
 
 #endif // !wxUSE_NANOSVG_EXTERNAL
+
+#endif // !wxUSE_HUNTER
 
 // Note that we have to include NanoSVG headers before including any of wx
 // headers, notably wx/unichar.h which defines global operator==() overloads
@@ -278,7 +282,10 @@ wxGCC_WARNING_SUPPRESS(double-promotion)
     #define NANOSVG_ALL_COLOR_KEYWORDS
 #endif
 
-#if wxUSE_NANOSVG_EXTERNAL
+#ifdef wxUSE_HUNTER
+    #include <nanosvg/nanosvg.h>
+    #include <nanosvg/nanosvgrast.h>
+#elif wxUSE_NANOSVG_EXTERNAL
     #include <nanosvg.h>
     #include <nanosvgrast.h>
 #else
