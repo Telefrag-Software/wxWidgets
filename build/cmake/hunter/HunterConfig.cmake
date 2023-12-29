@@ -1,62 +1,86 @@
 include_guard()
 
-# LibTIFF Dependencies
-hunter_config(zstd
-	URL "https://codeload.github.com/facebook/zstd/zip/tags/v1.5.5"
-	VERSION "1.5.5.0"
-	SHA1 "f9ba91e59dfbd100e04fbf737f58c7c2fffb0918"
-)
-
-# LibTIFF / LibPNG Dependencies
-hunter_config(ZLIB
-	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-1.3.0.0.zip"
-	VERSION "1.3.0.0"
-	SHA1 "553c130c05f514e5db8b4ae623347e717674a4d1"
-)
-
-# wxWidgets Dependencies
 hunter_config(CatchSelfTest
 	URL "https://codeload.github.com/catchorg/catch2/zip/tags/v3.5.0"
 	VERSION "3.5.0.0"
 	SHA1 "fd37a71ebf9455181a44fe7e2a0d56bb3c07b973"
+	CMAKE_ARGS
+		CATCH_INSTALL_DOCS=OFF
+		CATCH_INSTALL_EXTRAS=OFF
+		CATCH_DEVELOPMENT_BUILD=OFF
+		CATCH_ENABLE_REPRODUCIBLE_BUILD=ON
+		CATCH_BUILD_TESTING=OFF
+		CATCH_BUILD_EXAMPLES=OFF
+		CATCH_BUILD_EXTRA_TESTS=OFF
+		CATCH_BUILD_FUZZERS=OFF
+		CATCH_BUILD_BENCHMARKS=OFF
+		CATCH_ENABLE_COVERAGE=OFF
+		CATCH_ENABLE_WERROR=ON
+		CATCH_BUILD_SURROGATES=OFF
+		CATCH_ENABLE_CONFIGURE_TESTS=OFF
+		CATCH_ENABLE_CMAKE_HELPER_TESTS=OFF
 )
 
-hunter_config(EXPAT
-	URL "https://codeload.github.com/libexpat/libexpat/zip/tags/R_2_5_0"
-	VERSION "2.5.0.0"
-	SHA1 "67d6afffe9719484e9b1614c6759a4ca4281e2b6"
+hunter_config(Expat
+	URL "https://codeload.github.com/libexpat/libexpat/zip/tags/R_2_7_3"
+	VERSION "2.7.3.0"
+	SHA1 "af45665222bb5c749a0750e971f2f72839f8999c"
+	CMAKE_ARGS
+		EXPAT_BUILD_TOOLS=OFF
+		EXPAT_BUILD_EXAMPLES=OFF
+		EXPAT_BUILD_TESTS=OFF
+		EXPAT_SHARED_LIBS=OFF
+		EXPAT_BUILD_DOCS=OFF
+		EXPAT_BUILD_FUZZERS=OFF
+		EXPAT_BUILD_PKGCONFIG=ON
+		EXPAT_OSSFUZZ_BUILD=OFF
+		EXPAT_ENABLE_INSTALL=ON
+		EXPAT_DTD=ON
+		EXPAT_GE=ON
+		EXPAT_NS=ON
+		EXPAT_WARNINGS_AS_ERRORS=OFF
+		EXPAT_ATTR_INFO=OFF
+		EXPAT_LARGE_SIZE=OFF
+		EXPAT_MIN_SIZE=OFF
+		EXPAT_MSVC_STATIC_CRT=ON
 )
 
-hunter_config(JPEG
-	URL "https://codeload.github.com/libjpeg-turbo/libjpeg-turbo/zip/tags/3.0.1"
-	VERSION "3.0.1.0"
-	SHA1 "cd1ab159d6dccb7e14973dc4b72fe5f25a492fe2"
+hunter_config(Jpeg
+	URL "https://codeload.github.com/Telefrag-Software/libjpeg/zip/tags/9f"
+	VERSION "9f"
+	SHA1 "2f0ca550a93e9dc429dbd94b70aace53b9360bc6"
 )
 
 hunter_config(liblzma
-	URL "https://codeload.github.com/tukaani-project/xz/zip/tags/v5.4.5"
-	VERSION "5.4.5"
-	SHA1 "99d49eecca208460832e422148c0cb1f3c8ff7cd"
+	URL "https://codeload.github.com/tukaani-project/xz/zip/tags/v5.8.2"
+	VERSION "5.8.2"
+	SHA1 "078a77cfee78937449a9f159c6d35fe81806f268"
 	CMAKE_ARGS
+		BUILD_SHARED_LIBS=OFF
 		BUILD_TESTING=OFF
+		XZ_SMALL=OFF
+		XZ_EXTERNAL_SHA256=OFF
+		XZ_MICROLZMA_ENCODER=ON
+		XZ_MICROLZMA_DECODER=ON
+		XZ_LZIP_DECODER=ON
+		XZ_CLMUL_CRC=ON
+		XZ_ARM64_CRC32=ON
+		XZ_LOONGARCH_CRC32=ON
+		XZ_TOOL_XZDEC=OFF
+		XZ_TOOL_LZMADEC=OFF
+		XZ_TOOL_LZMAINFO=OFF
+		XZ_TOOL_XZ=OFF
+		XZ_TOOL_SYMLINKS=OFF
+		XZ_TOOL_SYMLINKS_LZMA=OFF
+		XZ_TOOL_SCRIPTS=OFF
+		XZ_DOXYGEN=OFF
+		XZ_DOC=OFF
 )
 
-hunter_config(NanoSVG
-	URL "https://github.com/Telefrag-Software/nanosvg/archive/refs/heads/hunter-2023-11-22.zip"
-	VERSION "2023-11-22"
-	SHA1 "69a5e869e95234e734f5200987cf6ce3811148ba"
-)
-
-hunter_config(PCRE2
-	URL "https://codeload.github.com/Telefrag-Software/pcre/zip/tags/v10.43"
-	VERSION "10.43.0"
-	SHA1 "5601b530d91d74c4e2da79ade0e314087d413e6c"
-)
-
-hunter_config(png
-	URL "https://github.com/Telefrag-Software/libpng/archive/refs/heads/hunter-1.6.40.0.zip"
-	VERSION "1.6.40.0"
-	SHA1 "caacb021be2661cf3d83f5892219fc98a910ec93"
+hunter_config(PNG
+	URL "https://github.com/Telefrag-Software/libpng/archive/refs/heads/hunter-1.6.53.2.zip"
+	VERSION "1.6.53.2"
+	SHA1 "caa094e0d01bc75599c8574ebb0286945a4139c4"
 	CMAKE_ARGS
 		BUILD_SHARED_LIBS=OFF
 		PNG_SHARED=OFF
@@ -65,6 +89,25 @@ hunter_config(png
 		PNG_TESTS=OFF
 		PNG_DEBUG=OFF
 		PNG_DISABLE_AWK=ON
+		SKIP_INSTALL_ALL=OFF
+		SKIP_INSTALL_HEADERS=OFF
+		SKIP_INSTALL_LIBRARIES=OFF
+		SKIP_INSTALL_EXECUTABLES=ON
+		SKIP_INSTALL_PROGRAMS=ON
+		SKIP_INSTALL_EXPORT=OFF
+		SKIP_INSTALL_CONFIG_FILE=OFF
+)
+
+hunter_config(nanosvg
+	URL "https://github.com/Telefrag-Software/nanosvg/archive/refs/heads/hunter-2025-11-21.zip"
+	VERSION "2025.11.21"
+	SHA1 "a5e35c0ad9a3784b0627b84ce03c98de211d112d"
+)
+
+hunter_config(pcre2
+	URL "https://codeload.github.com/Telefrag-Software/pcre/zip/tags/v10.43.0.1"
+	VERSION "10.43.0.1"
+	SHA1 "2dad05d21a07b8ba4aaa84199580798e9dc1258a"
 )
 
 #hunter_config(TIFF
@@ -76,3 +119,35 @@ hunter_config(png
 #		lzma=OFF
 #		zstd=OFF
 #)
+
+# ZLib is used by LibPNG and LibTIFF.
+hunter_config(ZLIB
+	URL "https://github.com/Telefrag-Software/zlib/archive/refs/heads/hunter-1.3.1.2.zip"
+	VERSION "1.3.1.2"
+	SHA1 "0a8b433ea1eac928a1dfaff3f533dfba61b3aeb9"
+	CMAKE_ARGS
+		ZLIB_BUILD_TESTING=OFF
+		ZLIB_BUILD_SHARED=OFF
+		ZLIB_BUILD_STATIC=ON
+		ZLIB_BUILD_MINIZIP=OFF
+		ZLIB_INSTALL=ON
+		ZLIB_PREFIX=OFF
+		ZLIB_INSTALL_DOCS=OFF
+		ZLIB_INSTALL_LICENSES=OFF
+)
+
+# ZStandard is used by LibTIFF.
+hunter_config(zstd
+	URL "https://codeload.github.com/facebook/zstd/zip/tags/v1.5.7"
+	VERSION "1.5.7.0"
+	SHA1 "8bd73c3d2bf87f0c033299f5d05fb4bde2480ad1"
+	CMAKE_ARGS
+		ZSTD_LEGACY_SUPPORT=OFF
+		ZSTD_MULTITHREAD_SUPPORT=ON
+		ZSTD_BUILD_PROGRAMS=OFF
+		ZSTD_BUILD_CONTRIB=OFF
+		ZSTD_PROGRAMS_LINK_SHARED=OFF
+		ZSTD_BUILD_TESTS=OFF
+		ZSTD_USE_STATIC_RUNTIME=ON
+		ZSTD_ENABLE_CXX=ON
+)
