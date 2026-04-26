@@ -108,9 +108,9 @@ hunter_config(nanosvg
 )
 
 hunter_config(pcre2
-	URL "https://github.com/Telefrag-Software/pcre/archive/refs/heads/hunter-10.43.0.1.zip"
-	VERSION "10.43.0.1"
-	SHA1 "b6a4700010ff2c97239323842298b2efb8d2baac"
+	URL "https://github.com/Telefrag-Software/pcre/archive/refs/heads/hunter-10.43.0.2.zip"
+	VERSION "10.43.0.2"
+	SHA1 "b210a13831b8a374ca6a42300b763d689cf24db8"
 	CMAKE_ARGS
 		BUILD_STATIC_LIBS=ON
 		PCRE2_BUILD_PCRE2_8=ON
